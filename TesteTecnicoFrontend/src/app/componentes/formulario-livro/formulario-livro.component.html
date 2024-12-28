@@ -1,0 +1,42 @@
+<div>
+  <button (click)="voltar()">Voltar</button>
+</div>
+<div class="container">
+  <div class="container-formulario">
+    <form [formGroup]="livroForm" (ngSubmit)="salvarLivro()">
+      <div>
+        <label for="titulo">Título</label>
+        <input id="titulo" formControlName="titulo" type="text" />
+        <div class="error-message" *ngIf="livroForm.controls['titulo'].invalid && livroForm.controls['titulo'].touched">
+          {{ getErrorMessage('titulo') }}
+        </div>
+      </div>
+
+      <div>
+        <label for="autor">Autor</label>
+        <input id="autor" formControlName="autor" type="text" />
+        <div class="error-message" *ngIf="livroForm.controls['autor'].invalid && livroForm.controls['autor'].touched">
+          {{ getErrorMessage('autor') }}
+        </div>
+      </div>
+
+      <div>
+        <label for="genero">Gênero</label>
+        <input id="genero" formControlName="genero" type="text" />
+        <div class="error-message" *ngIf="livroForm.controls['genero'].invalid && livroForm.controls['genero'].touched">
+          {{ getErrorMessage('genero') }}
+        </div>
+      </div>
+
+      <div>
+        <label for="anoPublicacao">Ano de Publicação</label>
+        <input id="anoPublicacao" formControlName="anoPublicacao" type="text" />
+        <div class="error-message" *ngIf="livroForm.controls['anoPublicacao'].invalid && livroForm.controls['anoPublicacao'].touched">
+          {{ getErrorMessage('anoPublicacao') }}
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="livroForm.invalid">Salvar</button>
+    </form>
+  </div>
+</div>

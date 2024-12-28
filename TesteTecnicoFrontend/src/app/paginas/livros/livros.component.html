@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Lista de Livros</h2>
+
+  <button (click)="adicionarLivro()">Adicionar Novo Livro</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Gênero</th>
+        <th>Ano de Publicação</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let livro of livros">
+        <td>{{ livro.titulo }}</td>
+        <td>{{ livro.autor }}</td>
+        <td>{{ livro.genero }}</td>
+        <td>{{ livro.anoPublicacao }}</td>
+        <td>
+          <button (click)="editarLivro(livro)">Editar</button>
+          <button (click)="excluirLivro(livro.id)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
