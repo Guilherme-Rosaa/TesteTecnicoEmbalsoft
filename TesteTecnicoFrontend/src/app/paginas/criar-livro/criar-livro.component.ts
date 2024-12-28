@@ -16,7 +16,7 @@ export class CriarLivroComponent {
     private router: Router,
     private toastrService: ToastrService,
     private carregamentoService: CarregamentoService
-  ) {}
+  ) { }
 
   salvarLivro(event: any): void {
     const livro = event;
@@ -24,9 +24,10 @@ export class CriarLivroComponent {
       (resp: Livro) => {
         this.toastrService.success(`Livro ${resp.titulo} cadastrado com sucesso!`);
         this.carregamentoService.setLoading(false);
+        this.router.navigate(['']);
       },
       (error) => {
-        this.toastrService.error(error, "Erro ao salvar o livro!");
+        this.toastrService.error(error.error, "Erro ao salvar o livro!");
         this.carregamentoService.setLoading(false);
       }
     );

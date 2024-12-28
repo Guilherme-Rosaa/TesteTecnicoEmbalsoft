@@ -17,44 +17,85 @@ namespace TesteTecnico.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll() => Ok(_service.GetAll());
+        public IActionResult GetAll()
+        {
+            try
+            {
+                var livros = _service.GetAll();
+                return Ok(livros);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao buscar os livros: {ex.Message}");
+            }
+        }
 
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
-            var livro = _service.GetById(id);
-            return livro != null ? Ok(livro) : NotFound();
+            try
+            {
+                var livro = _service.GetById(id);
+                return livro != null ? Ok(livro) : NotFound($"Livro com ID {id} não encontrado.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao buscar o livro com ID {id}: {ex.Message}");
+            }
         }
 
         [HttpPost]
         public IActionResult Add([FromBody] LivroDto livroDto)
         {
-            // Mapeia o DTO para a entidade Livro
-            var livro = new Livro
+            try
             {
-                Titulo = livroDto.Titulo,
-                Autor = livroDto.Autor,
-                Genero = livroDto.Genero,
-                AnoPublicacao = livroDto.AnoPublicacao
-            };
-
-            _service.Add(livro); // Passa o modelo para o serviço
-            return CreatedAtAction(nameof(GetById), new { id = livro.Id }, livro);
+                var livro = _service.Add(livroDto);
+                return CreatedAtAction(nameof(GetById), new { id = livro.Id }, livro);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500,  ex.Message);
+            }
         }
-
 
         [HttpPut("{id}")]
         public IActionResult Update(Guid id, [FromBody] LivroDto livroDto)
         {
-            _service.Update(livroDto, id);
-            return NoContent();
+            try
+            {
+                var livro = _service.Update(livroDto, id);
+                return Ok(livro);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao atualizar o livro com ID {id}: {ex.Message}");
+            }
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
-            _service.Delete(id);
-            return NoContent();
+            try
+            {
+                _service.Delete(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao excluir o livro com ID {id}: {ex.Message}");
+            }
         }
     }
 }

@@ -985,19 +985,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Guilherme\\.nuget\\packages\\": {}
+    "C:\\Users\\dev\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Guilherme\\OneDrive\\Ambiente de Trabalho\\TesteTecnicoEmbalsoft\\TesteTecnico\\TesteTecnico.csproj",
+      "projectUniqueName": "C:\\Users\\dev\\GuiRosa\\TesteTecnicoEmbalsoft\\TesteTecnico\\TesteTecnico.csproj",
       "projectName": "TesteTecnico",
-      "projectPath": "C:\\Users\\Guilherme\\OneDrive\\Ambiente de Trabalho\\TesteTecnicoEmbalsoft\\TesteTecnico\\TesteTecnico.csproj",
-      "packagesPath": "C:\\Users\\Guilherme\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Guilherme\\OneDrive\\Ambiente de Trabalho\\TesteTecnicoEmbalsoft\\TesteTecnico\\obj\\",
+      "projectPath": "C:\\Users\\dev\\GuiRosa\\TesteTecnicoEmbalsoft\\TesteTecnico\\TesteTecnico.csproj",
+      "packagesPath": "C:\\Users\\dev\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dev\\GuiRosa\\TesteTecnicoEmbalsoft\\TesteTecnico\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Guilherme\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dev\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1056,7 +1060,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
       }
     }
   }

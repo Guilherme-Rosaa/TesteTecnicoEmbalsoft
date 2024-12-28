@@ -32,7 +32,7 @@ export class FormularioLivroComponent implements OnInit {
     private toastrService: ToastrService,
     private router: Router,
     private carregamentoService: CarregamentoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (!this.isNovo && this.livroId) {
@@ -62,6 +62,7 @@ export class FormularioLivroComponent implements OnInit {
   }
 
   buscarLivro(): void {
+    this.carregamentoService.setLoading(true);
     this.service.getLivro(this.livroId).subscribe(
       (resp: Livro) => {
         this.livroForm.setValue({
@@ -70,10 +71,11 @@ export class FormularioLivroComponent implements OnInit {
           genero: resp.genero,
           anoPublicacao: resp.anoPublicacao
         });
+        this.carregamentoService.setLoading(false);
       },
       (error) => {
-        console.error('Erro ao buscar livro:', error);
         this.toastrService.error('Erro ao carregar informações do livro.');
+        this.carregamentoService.setLoading(false);
       }
     );
   }
@@ -98,7 +100,7 @@ export class FormularioLivroComponent implements OnInit {
     });
   }
 
-  voltar(){
+  voltar() {
     this.router.navigate(['']);
   }
 }

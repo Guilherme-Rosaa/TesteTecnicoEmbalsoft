@@ -7,8 +7,8 @@ namespace TesteTecnico.Services.Interfaces
     {
         IEnumerable<Livro> GetAll();
         Livro GetById(Guid id);
-        void Add(Livro livro);
-        void Update(LivroDto livro, Guid id);
+        Livro Add(LivroDto livroDto);
+        Livro Update(LivroDto livro, Guid id);
         void Delete(Guid id);
     }
 }

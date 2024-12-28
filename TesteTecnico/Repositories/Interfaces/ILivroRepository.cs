@@ -4,6 +4,7 @@ namespace TesteTecnico.Repositories.Interfaces
 {
     public interface ILivroRepository
     {
+        bool Any(Func<Livro, bool> predicate);
         IEnumerable<Livro> GetAll();
         Livro GetById(Guid id);
         void Add(Livro livro);

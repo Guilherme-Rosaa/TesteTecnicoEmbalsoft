@@ -21,19 +21,24 @@ export class EditarLivroComponent implements OnInit {
     private router: Router,
     private toastrService: ToastrService,
     private carregamentoService: CarregamentoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       this.livroId = params.get('id') || '';
     });
+
+    if (!this.livroId) {
+      this.toastrService.error("Erro ao iniciar a edição, tente nomavamente!");
+      this.router.navigate(['']);
+    }
   }
 
   editarLivro(event: any): void {
     const livro = event.livro;
     const livroId = event.id;
 
-    if(livroId != this.livroId){
+    if (livroId != this.livroId) {
       this.toastrService.error("Tivemos um problema para identificar o livro, tente novamente!");
       this.router.navigate(['']);
     }
@@ -42,12 +47,16 @@ export class EditarLivroComponent implements OnInit {
       (resp: Livro) => {
         this.toastrService.success(`Livro ${resp.titulo} editado com sucesso!`);
         this.carregamentoService.setLoading(false);
+        this.router.navigate(['']);
       },
       (error) => {
-        this.toastrService.error(error, "Erro ao editar o livro!");
+        this.toastrService.error(error.error, "Erro ao editar o livro!");
         this.carregamentoService.setLoading(false);
       }
     );
   }
 
+  voltar() {
+    this.router.navigate(['']);
+  }
 }

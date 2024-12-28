@@ -14,28 +14,110 @@ namespace TesteTecnico.Services
             _repository = repository;
         }
 
-        public IEnumerable<Livro> GetAll() => _repository.GetAll();
-
-        public Livro GetById(Guid id) => _repository.GetById(id);
-
-        public void Add(Livro livro) => _repository.Add(livro);
-
-        public void Update(LivroDto livroDto, Guid id)
+        public IEnumerable<Livro> GetAll()
         {
-            // Obter o livro existente do repositório ou banco de dados
-            var livro = GetById(id);
-
-            // Atualizar as propriedades do livro com os dados recebidos do livroDto
-            livro.Titulo = livroDto.Titulo;
-            livro.Autor = livroDto.Autor;
-            livro.Genero = livroDto.Genero;
-            livro.AnoPublicacao = livroDto.AnoPublicacao;
-
-            // Salvar a alteração no repositório
-            _repository.Update(livro);
+            try
+            {
+                return _repository.GetAll();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro ao buscar todos os livros.", ex);
+            }
         }
 
+        public Livro GetById(Guid id)
+        {
+            try
+            {
+                var livro = _repository.GetById(id);
+                if (livro == null)
+                    throw new KeyNotFoundException("Livro não encontrado.");
 
-        public void Delete(Guid id) => _repository.Delete(id);
+                return livro;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Erro ao buscar o livro com ID {id}.", ex);
+            }
+        }
+
+        public Livro Add(LivroDto livroDto)
+        {
+            try
+            {
+                bool livroExiste = _repository
+                    .Any(l => l.Titulo == livroDto.Titulo &&
+                              l.Autor == livroDto.Autor &&
+                              l.Genero == livroDto.Genero &&
+                              l.AnoPublicacao == livroDto.AnoPublicacao);
+
+                if (livroExiste)
+                {
+                    throw new InvalidOperationException("Já existe um livro com os mesmos dados.");
+                }
+
+                var livro = new Livro
+                {
+                    Titulo = livroDto.Titulo,
+                    Autor = livroDto.Autor,
+                    Genero = livroDto.Genero,
+                    AnoPublicacao = livroDto.AnoPublicacao
+                };
+
+                _repository.Add(livro);
+                return livro;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+        }
+
+        public Livro Update(LivroDto livroDto, Guid id)
+        {
+            try
+            {
+                var livro = GetById(id);
+                livro.Titulo = livroDto.Titulo;
+                livro.Autor = livroDto.Autor;
+                livro.Genero = livroDto.Genero;
+                livro.AnoPublicacao = livroDto.AnoPublicacao;
+
+                _repository.Update(livro);
+
+                return livro;
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new ApplicationException("Não foi possível atualizar. Livro não encontrado.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Erro ao atualizar o livro com ID {id}.", ex);
+            }
+        }
+
+        public void Delete(Guid id)
+        {
+            try
+            {
+                var livro = GetById(id);
+                if (livro == null)
+                {
+                    throw new KeyNotFoundException("Não foi possível excluir. Livro não encontrado.");
+                }
+
+                _repository.Delete(id);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                throw new ApplicationException("Não foi possível excluir. Livro não encontrado.", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Erro ao excluir o livro com ID {id}.", ex);
+            }
+        }
     }
 }

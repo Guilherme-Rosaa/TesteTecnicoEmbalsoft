@@ -1,42 +1,54 @@
 <div>
-  <button (click)="voltar()">Voltar</button>
+  <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
 </div>
+
 <div class="container">
   <div class="container-formulario">
     <form [formGroup]="livroForm" (ngSubmit)="salvarLivro()">
+
       <div>
-        <label for="titulo">Título</label>
-        <input id="titulo" formControlName="titulo" type="text" />
-        <div class="error-message" *ngIf="livroForm.controls['titulo'].invalid && livroForm.controls['titulo'].touched">
-          {{ getErrorMessage('titulo') }}
-        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Título</mat-label>
+          <input matInput id="titulo" formControlName="titulo" type="text" />
+          <mat-error *ngIf="livroForm.controls['titulo'].invalid && livroForm.controls['titulo'].touched">
+            {{ getErrorMessage('titulo') }}
+          </mat-error>
+        </mat-form-field>
       </div>
 
       <div>
-        <label for="autor">Autor</label>
-        <input id="autor" formControlName="autor" type="text" />
-        <div class="error-message" *ngIf="livroForm.controls['autor'].invalid && livroForm.controls['autor'].touched">
-          {{ getErrorMessage('autor') }}
-        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Autor</mat-label>
+          <input matInput id="autor" formControlName="autor" type="text" />
+          <mat-error *ngIf="livroForm.controls['autor'].invalid && livroForm.controls['autor'].touched">
+            {{ getErrorMessage('autor') }}
+          </mat-error>
+        </mat-form-field>
       </div>
 
       <div>
-        <label for="genero">Gênero</label>
-        <input id="genero" formControlName="genero" type="text" />
-        <div class="error-message" *ngIf="livroForm.controls['genero'].invalid && livroForm.controls['genero'].touched">
-          {{ getErrorMessage('genero') }}
-        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Gênero</mat-label>
+          <input matInput id="genero" formControlName="genero" type="text" />
+          <mat-error *ngIf="livroForm.controls['genero'].invalid && livroForm.controls['genero'].touched">
+            {{ getErrorMessage('genero') }}
+          </mat-error>
+        </mat-form-field>
       </div>
 
       <div>
-        <label for="anoPublicacao">Ano de Publicação</label>
-        <input id="anoPublicacao" formControlName="anoPublicacao" type="text" />
-        <div class="error-message" *ngIf="livroForm.controls['anoPublicacao'].invalid && livroForm.controls['anoPublicacao'].touched">
-          {{ getErrorMessage('anoPublicacao') }}
-        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>Ano de Publicação</mat-label>
+          <input matInput id="anoPublicacao" formControlName="anoPublicacao" type="text" />
+          <mat-error *ngIf="livroForm.controls['anoPublicacao'].invalid && livroForm.controls['anoPublicacao'].touched">
+            {{ getErrorMessage('anoPublicacao') }}
+          </mat-error>
+        </mat-form-field>
       </div>
 
-      <button type="submit" [disabled]="livroForm.invalid">Salvar</button>
+      <div>
+        <button mat-raised-button type="submit" [disabled]="livroForm.invalid" color="primary">Salvar</button>
+      </div>
     </form>
   </div>
 </div>

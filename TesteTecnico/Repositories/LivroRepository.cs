@@ -12,29 +12,90 @@ namespace TesteTecnico.Repositories
             _context = context;
         }
 
-        public IEnumerable<Livro> GetAll() => _context.Livros.ToList();
+        public bool Any(Func<Livro, bool> predicate)
+        {
+            try
+            {
+                return _context.Set<Livro>().Any(predicate);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro ao verificar a existência do livro.", ex);
+            }
+        }
 
-        public Livro GetById(Guid id) => _context.Livros.Find(id);
+        public IEnumerable<Livro> GetAll()
+        {
+            try
+            {
+                return _context.Livros.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro ao buscar todos os livros.", ex);
+            }
+        }
+
+        public Livro GetById(Guid id)
+        {
+            try
+            {
+                var livro = _context.Livros.Find(id);
+                if (livro == null)
+                {
+                    throw new KeyNotFoundException($"Livro com ID {id} não encontrado.");
+                }
+
+                return livro;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Erro ao buscar o livro com ID {id}.", ex);
+            }
+        }
 
         public void Add(Livro livro)
         {
-            _context.Livros.Add(livro);
-            _context.SaveChanges();
+            try
+            {
+                _context.Livros.Add(livro);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Erro ao adicionar o livro.", ex);
+            }
         }
 
         public void Update(Livro livro)
         {
-            _context.Livros.Update(livro);
-            _context.SaveChanges();
+            try
+            {
+                _context.Livros.Update(livro);
+                _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Erro ao atualizar o livro com ID {livro.Id}.", ex);
+            }
         }
 
         public void Delete(Guid id)
         {
-            var livro = _context.Livros.Find(id);
-            if (livro != null)
+            try
             {
+                var livro = _context.Livros.Find(id);
+                if (livro == null)
+                {
+                    throw new KeyNotFoundException($"Livro com ID {id} não encontrado para exclusão.");
+                }
+
                 _context.Livros.Remove(livro);
                 _context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Erro ao excluir o livro com ID {id}.", ex);
             }
         }
     }

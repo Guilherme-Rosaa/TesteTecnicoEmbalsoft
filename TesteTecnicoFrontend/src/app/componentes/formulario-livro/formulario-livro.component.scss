@@ -1,67 +1,18 @@
-.container {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  height: 90vh; /* Garante que o container ocupe toda a altura da viewport */
-  width: 100%;   /* Garante que ocupe toda a largura */
-}
-
-
 .container-formulario {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  width: 50vw;
+  max-width: 500px;
+  margin: 20px auto;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-div {
-  margin-bottom: 10px;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-}
-
-input {
+mat-form-field {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
 }
 
 button {
   width: 100%;
-  padding: 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
+  margin-top: 20px;
 }
 
-button:disabled {
-  background-color: #ddd;
-}
-
-input.ng-invalid.ng-touched {
-  border-color: red;
-  background-color: #ffe6e6;
-}
-
-div.error-message {
-  color: red;
-  font-size: 0.9rem;
+.conteinar {
+  display: flex;
+  align-items: center;
 }
