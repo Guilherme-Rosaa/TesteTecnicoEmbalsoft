@@ -43,15 +43,15 @@ export class EditarLivroComponent implements OnInit {
       this.router.navigate(['']);
     }
 
-    this.service.editLivro(livroId, livro).subscribe(
+    this.service.editarLivro(livroId, livro).subscribe(
       (resp: Livro) => {
         this.toastrService.success(`Livro ${resp.titulo} editado com sucesso!`);
-        this.carregamentoService.setLoading(false);
+        this.carregamentoService.definirCarregando(false);
         this.router.navigate(['']);
       },
       (error) => {
         this.toastrService.error(error.error, "Erro ao editar o livro!");
-        this.carregamentoService.setLoading(false);
+        this.carregamentoService.definirCarregando(false);
       }
     );
   }

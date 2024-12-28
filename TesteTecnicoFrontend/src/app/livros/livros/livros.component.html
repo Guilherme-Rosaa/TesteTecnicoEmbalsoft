@@ -1,0 +1,46 @@
+<div class="container">
+  <h2>Lista de Livros</h2>
+
+  <button mat-raised-button color="primary" (click)="adicionarLivro()">Adicionar Novo Livro</button>
+
+  <div class="tabela-com-scroll">
+    <table mat-table [dataSource]="livros" class="mat-elevation-z8">
+      <ng-container matColumnDef="titulo">
+        <th mat-header-cell *matHeaderCellDef>Título</th>
+        <td mat-cell *matCellDef="let livro">{{ livro.titulo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="autor">
+        <th mat-header-cell *matHeaderCellDef>Autor</th>
+        <td mat-cell *matCellDef="let livro">{{ livro.autor }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="genero">
+        <th mat-header-cell *matHeaderCellDef>Gênero</th>
+        <td mat-cell *matCellDef="let livro">{{ livro.genero }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="anoPublicacao">
+        <th mat-header-cell *matHeaderCellDef>Ano</th>
+        <td mat-cell *matCellDef="let livro">{{ livro.anoPublicacao }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef>Ações</th>
+        <td mat-cell *matCellDef="let livro">
+          <button mat-mini-fab color="primary" (click)="editarLivro(livro)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          &nbsp;
+          <button mat-mini-fab color="warn" (click)="excluirLivro(livro.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+</div>

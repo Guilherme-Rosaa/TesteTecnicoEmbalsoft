@@ -12,23 +12,23 @@ export class LivrosService {
 
   constructor(private http: HttpClient) { }
 
-  getLivros(): Observable<Livro[]> {
+  buscarLivros(): Observable<Livro[]> {
     return this.http.get<any>(this.baseUrl);
   }
 
-  getLivro(id: string): Observable<Livro> {
+  buscarLivro(id: string): Observable<Livro> {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
-  addLivro(livro: LivroDto): Observable<Livro> {
+  adicionarLivro(livro: LivroDto): Observable<Livro> {
     return this.http.post<any>(this.baseUrl, livro);
   }
 
-  editLivro(id: string, livro: LivroDto): Observable<any> {
+  editarLivro(id: string, livro: LivroDto): Observable<any> {
     return this.http.put<any>(`${this.baseUrl}/${id}`, livro);
   }
 
-  deleteLivro(id: string): Observable<any> {
+  excluirLivro(id: string): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${id}`);
   }
 }

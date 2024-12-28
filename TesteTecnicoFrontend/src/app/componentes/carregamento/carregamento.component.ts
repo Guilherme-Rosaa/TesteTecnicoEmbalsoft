@@ -7,11 +7,11 @@ import { CarregamentoService } from 'src/app/servicos/carregamento.service';
   styleUrls: ['./carregamento.component.scss']
 })
 export class CarregamentoComponent {
-  loading: boolean = false;
+  carregando: boolean = false;
 
   constructor(private carregamentoService: CarregamentoService) {
-    this.carregamentoService.getIsLoading().subscribe((isLoading: boolean) => {
-      this.loading = isLoading;
+    this.carregamentoService.obterCarregando().subscribe((carregando: boolean) => {
+      this.carregando = carregando;
     });
   }
 }

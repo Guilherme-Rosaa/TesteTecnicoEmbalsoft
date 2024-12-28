@@ -1,6 +1,7 @@
 .container-formulario {
-  max-width: 500px;
-  margin: 20px auto;
+  max-width: 900px;
+  min-width: 500px;
+  //margin: 20px auto;
 }
 
 mat-form-field {
@@ -12,7 +13,31 @@ button {
   margin-top: 20px;
 }
 
-.conteinar {
+.container {
   display: flex;
   align-items: center;
+  align-content: center;
+  height: 100%;
+  justify-content: center;
+}
+
+.rodape{
+  display: flex;
+  gap: 5px
+}
+@media screen and (max-width: 520px) {
+  .container-formulario {
+    max-width: 100%;
+    min-width: auto;
+    padding: 0 10px;
+  }
+
+  .rodape {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
 }

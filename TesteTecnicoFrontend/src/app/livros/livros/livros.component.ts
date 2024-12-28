@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
-import { EditarLivroComponent } from 'src/app/paginas/editar-livros/editar-livros.component';
+import { EditarLivroComponent } from 'src/app/livros/editar-livros/editar-livros.component';
 import { Livro } from 'src/app/modelos/Livro';
 import { CarregamentoService } from 'src/app/servicos/carregamento.service';
 import { LivrosService } from 'src/app/servicos/livros.service';
@@ -24,10 +24,10 @@ export class LivrosComponent {
   ) { }
 
   ngOnInit(): void {
-    this.carregamentoService.setLoading(true);
-    this.service.getLivros().subscribe((resp: any) => {
+    this.carregamentoService.definirCarregando(true);
+    this.service.buscarLivros().subscribe((resp: any) => {
       this.livros = resp;
-      this.carregamentoService.setLoading(false);
+      //this.carregamentoService.definirCarregando(false);
     })
   }
 
@@ -41,9 +41,9 @@ export class LivrosComponent {
   }
 
   excluirLivro(livroId: string): void {
-    this.carregamentoService.setLoading(true);
-    this.service.deleteLivro(livroId).subscribe((resp: any) => {
-      this.carregamentoService.setLoading(false);
+    this.carregamentoService.definirCarregando(true);
+    this.service.excluirLivro(livroId).subscribe((resp: any) => {
+      this.carregamentoService.definirCarregando(false);
       this.ngOnInit();
     })
   }

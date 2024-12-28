@@ -4,13 +4,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #dddcd8;
+  background-color: #cbcbccab;;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 2;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out; /* Transição suave na opacidade */
+  transition: opacity 0.5s ease-in-out;
+  font-size: 30px;
 
   img {
       width: 20rem;

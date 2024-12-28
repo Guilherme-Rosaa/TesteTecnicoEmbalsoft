@@ -87,3 +87,4 @@ C:\Users\dev\GuiRosa\TesteTecnicoEmbalsoft\TesteTecnico\obj\Debug\net6.0\refint\
 C:\Users\dev\GuiRosa\TesteTecnicoEmbalsoft\TesteTecnico\obj\Debug\net6.0\TesteTecnico.pdb
 C:\Users\dev\GuiRosa\TesteTecnicoEmbalsoft\TesteTecnico\obj\Debug\net6.0\TesteTecnico.genruntimeconfig.cache
 C:\Users\dev\GuiRosa\TesteTecnicoEmbalsoft\TesteTecnico\obj\Debug\net6.0\ref\TesteTecnico.dll
+C:\Users\Guilherme\OneDrive\Ambiente de Trabalho\TesteTecnicoEmbalsoft\TesteTecnico\obj\Debug\net6.0\TesteTecnico.sourcelink.json

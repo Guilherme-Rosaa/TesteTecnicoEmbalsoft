@@ -1,0 +1,69 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  overflow: hidden;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+button {
+  box-shadow: none;
+}
+
+.tabela-com-scroll{
+  max-height: 450px;
+  overflow-y: auto;
+}
+
+
+@media screen and (max-width: 600px) {
+  .container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .tabela-com-scroll {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  table {
+    width: 100%; /* Garante que a tabela ocupe toda a largura */
+    display: block; /* Necessário para aplicar o scroll horizontal */
+    overflow-x: auto;
+    white-space: nowrap; /* Evita quebra de linhas nas células */
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+
+  th {
+    font-size: 14px; /* Ajusta o tamanho da fonte para cabeçalhos */
+  }
+
+  td {
+    font-size: 12px; /* Ajusta o tamanho da fonte para células */
+  }
+
+  button {
+    width: 30px; /* Reduz a largura dos botões */
+    height: 30px; /* Reduz a altura dos botões */
+    margin: 5px 0;
+    font-size: 10px; /* Reduz o tamanho da fonte */
+    padding: 0; /* Remove o padding interno */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

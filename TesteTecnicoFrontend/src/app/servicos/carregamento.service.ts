@@ -6,17 +6,17 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CarregamentoService {
 
-  private isLoading = new BehaviorSubject<boolean>(false);
-  loading: EventEmitter<boolean> = new EventEmitter<boolean>();
+  private carregando = new BehaviorSubject<boolean>(false);
+  eventoCarregando: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
 
-  setLoading(load: boolean): void {
-    this.isLoading.next(load);
-    this.loading.emit(load);
+  definirCarregando(estado: boolean): void {
+    this.carregando.next(estado);
+    this.eventoCarregando.emit(estado);
   }
 
-  getIsLoading(): BehaviorSubject<boolean> {
-    return this.isLoading;
+  obterCarregando(): BehaviorSubject<boolean> {
+    return this.carregando;
   }
 }

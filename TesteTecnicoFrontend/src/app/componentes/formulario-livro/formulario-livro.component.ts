@@ -41,7 +41,7 @@ export class FormularioLivroComponent implements OnInit {
   }
 
   salvarLivro(): void {
-    this.carregamentoService.setLoading(true);
+    this.carregamentoService.definirCarregando(true);
     if (this.livroForm.valid) {
       const livro = this.livroForm.value;
 
@@ -52,7 +52,7 @@ export class FormularioLivroComponent implements OnInit {
         this.editarLivro.emit({ livro, id: this.livroId });
       } else {
         this.toastrService.error('Tivemos um problema para identificar a ação realizada!');
-        this.carregamentoService.setLoading(false);
+        this.carregamentoService.definirCarregando(false);
         this.router.navigate(['']);
       }
     } else {
@@ -62,8 +62,8 @@ export class FormularioLivroComponent implements OnInit {
   }
 
   buscarLivro(): void {
-    this.carregamentoService.setLoading(true);
-    this.service.getLivro(this.livroId).subscribe(
+    this.carregamentoService.definirCarregando(true);
+    this.service.buscarLivro(this.livroId).subscribe(
       (resp: Livro) => {
         this.livroForm.setValue({
           titulo: resp.titulo,
@@ -71,16 +71,16 @@ export class FormularioLivroComponent implements OnInit {
           genero: resp.genero,
           anoPublicacao: resp.anoPublicacao
         });
-        this.carregamentoService.setLoading(false);
+        this.carregamentoService.definirCarregando(false);
       },
       (error) => {
         this.toastrService.error('Erro ao carregar informações do livro.');
-        this.carregamentoService.setLoading(false);
+        this.carregamentoService.definirCarregando(false);
       }
     );
   }
 
-  getErrorMessage(field: string): string {
+  buscarMensagemErro(field: string): string {
     const control = this.livroForm.get(field);
     if (control?.hasError('required')) {
       return 'Campo obrigatório.';

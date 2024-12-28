@@ -1,7 +1,3 @@
-<div>
-  <button mat-raised-button color="accent" (click)="voltar()">Voltar</button>
-</div>
-
 <div class="container">
   <div class="container-formulario">
     <form [formGroup]="livroForm" (ngSubmit)="salvarLivro()">
@@ -11,7 +7,7 @@
           <mat-label>Título</mat-label>
           <input matInput id="titulo" formControlName="titulo" type="text" />
           <mat-error *ngIf="livroForm.controls['titulo'].invalid && livroForm.controls['titulo'].touched">
-            {{ getErrorMessage('titulo') }}
+            {{ buscarMensagemErro('titulo') }}
           </mat-error>
         </mat-form-field>
       </div>
@@ -21,7 +17,7 @@
           <mat-label>Autor</mat-label>
           <input matInput id="autor" formControlName="autor" type="text" />
           <mat-error *ngIf="livroForm.controls['autor'].invalid && livroForm.controls['autor'].touched">
-            {{ getErrorMessage('autor') }}
+            {{ buscarMensagemErro('autor') }}
           </mat-error>
         </mat-form-field>
       </div>
@@ -31,7 +27,7 @@
           <mat-label>Gênero</mat-label>
           <input matInput id="genero" formControlName="genero" type="text" />
           <mat-error *ngIf="livroForm.controls['genero'].invalid && livroForm.controls['genero'].touched">
-            {{ getErrorMessage('genero') }}
+            {{ buscarMensagemErro('genero') }}
           </mat-error>
         </mat-form-field>
       </div>
@@ -41,12 +37,13 @@
           <mat-label>Ano de Publicação</mat-label>
           <input matInput id="anoPublicacao" formControlName="anoPublicacao" type="text" />
           <mat-error *ngIf="livroForm.controls['anoPublicacao'].invalid && livroForm.controls['anoPublicacao'].touched">
-            {{ getErrorMessage('anoPublicacao') }}
+            {{ buscarMensagemErro('anoPublicacao') }}
           </mat-error>
         </mat-form-field>
       </div>
 
-      <div>
+      <div class="rodape">
+        <button mat-raised-button (click)="voltar()" color="primary">Cancelar</button>
         <button mat-raised-button type="submit" [disabled]="livroForm.invalid" color="primary">Salvar</button>
       </div>
     </form>
