@@ -8,7 +8,7 @@ import { LivroDto } from '../modelos/DTOs/LivroDto';
   providedIn: 'root'
 })
 export class LivrosService {
-  private baseUrl: string = 'https://localhost:7227/api/livros';  // Substitua pelo seu endpoint real
+  private baseUrl: string = 'https://localhost:7227/api/livros';
 
   constructor(private http: HttpClient) { }
 

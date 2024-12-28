@@ -7,7 +7,6 @@ import { LivrosComponent } from './livros/livros.component';
 import { CriarLivroComponent } from './criar-livro/criar-livro.component';
 import { FormularioLivroComponent } from '../componentes/formulario-livro/formulario-livro.component';
 
-// Importando o módulo compartilhado
 import { CompartilhadoModule } from '../compartilhado/compartilhado.module';
 
 @NgModule({

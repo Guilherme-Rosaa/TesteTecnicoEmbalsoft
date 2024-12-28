@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: '/listar-livros', pathMatch: 'full' },
-  { path: 'livros', loadChildren: () => import('./livros/livros.module').then(m => m.LivrosModule) } // Lazy load para LivrosModule
+  { path: 'livros', loadChildren: () => import('./livros/livros.module').then(m => m.LivrosModule) }
 ];
 
 @NgModule({
