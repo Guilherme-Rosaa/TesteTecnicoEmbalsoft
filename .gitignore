@@ -1,0 +1,8 @@
+# Ignorar diretórios do Visual Studio
+.vs/
+
+# Ignorar dependências do Node.js
+node_modules/
+
+# Ignorar diretórios de build do Angular
+dist/
